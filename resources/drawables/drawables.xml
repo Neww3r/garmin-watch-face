@@ -11,4 +11,15 @@
     <bitmap id="WeatherFog" filename="icons/weather_fog.png" dithering="none"/>
     <bitmap id="WeatherNight" filename="icons/weather_night.png" dithering="none"/>
     <bitmap id="WeatherPartlyNight" filename="icons/weather_partly_night.png" dithering="none"/>
+    <bitmap id="Umbrella0" filename="umbrella/umbrella_000.png" dithering="none"/>
+    <bitmap id="Umbrella10" filename="umbrella/umbrella_010.png" dithering="none"/>
+    <bitmap id="Umbrella20" filename="umbrella/umbrella_020.png" dithering="none"/>
+    <bitmap id="Umbrella30" filename="umbrella/umbrella_030.png" dithering="none"/>
+    <bitmap id="Umbrella40" filename="umbrella/umbrella_040.png" dithering="none"/>
+    <bitmap id="Umbrella50" filename="umbrella/umbrella_050.png" dithering="none"/>
+    <bitmap id="Umbrella60" filename="umbrella/umbrella_060.png" dithering="none"/>
+    <bitmap id="Umbrella70" filename="umbrella/umbrella_070.png" dithering="none"/>
+    <bitmap id="Umbrella80" filename="umbrella/umbrella_080.png" dithering="none"/>
+    <bitmap id="Umbrella90" filename="umbrella/umbrella_090.png" dithering="none"/>
+    <bitmap id="Umbrella100" filename="umbrella/umbrella_100.png" dithering="none"/>
 </drawables>

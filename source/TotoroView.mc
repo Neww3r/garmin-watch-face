@@ -25,6 +25,22 @@ const WEATHER_ICONS = [
 const NIGHT_START_HOUR = 20;
 const NIGHT_END_HOUR = 7;
 
+// Parapluie de Satsuki recoloré selon la batterie, par paliers de 10 % : rouge d'origine
+// à 0 %, vert à 100 % (images générées par tools/prepare_images.py).
+const UMBRELLAS = [
+    Rez.Drawables.Umbrella0,
+    Rez.Drawables.Umbrella10,
+    Rez.Drawables.Umbrella20,
+    Rez.Drawables.Umbrella30,
+    Rez.Drawables.Umbrella40,
+    Rez.Drawables.Umbrella50,
+    Rez.Drawables.Umbrella60,
+    Rez.Drawables.Umbrella70,
+    Rez.Drawables.Umbrella80,
+    Rez.Drawables.Umbrella90,
+    Rez.Drawables.Umbrella100,
+];
+
 class TotoroView extends WatchUi.WatchFace {
 
     private var _data as DataProvider;
@@ -35,6 +51,8 @@ class TotoroView extends WatchUi.WatchFace {
     private var _bgAod as BitmapResource?;
     private var _weatherIcon as BitmapResource?;
     private var _weatherIconId as ResourceId?;
+    private var _umbrella as BitmapResource?;
+    private var _umbrellaStep as Number = -1;
     private var _isSleeping as Boolean = false;
 
     function initialize() {
@@ -79,6 +97,7 @@ class TotoroView extends WatchUi.WatchFace {
         if (_bg != null) {
             dc.drawBitmap(0, 0, _bg);
         }
+        drawUmbrella(dc);
 
         var time = _layout["time"] as Array<Number>;
         dc.setColor(CREAM, Graphics.COLOR_TRANSPARENT);
@@ -97,6 +116,21 @@ class TotoroView extends WatchUi.WatchFace {
             var w = _layout["weather"] as Array<Number>;
             dc.drawBitmap(w[0] - weatherIcon.getWidth() / 2, w[1] - weatherIcon.getHeight() / 2, weatherIcon);
         }
+    }
+
+    private function drawUmbrella(dc as Dc) as Void {
+        // Palier le plus proche : 0 à 10 (soit 0 % à 100 %).
+        var step = (_data.getBattery() + 5) / 10;
+        if (step > 10) {
+            step = 10;
+        }
+        // Une seule image en mémoire, rechargée seulement quand le palier change.
+        if (step != _umbrellaStep) {
+            _umbrella = WatchUi.loadResource(UMBRELLAS[step] as ResourceId) as BitmapResource;
+            _umbrellaStep = step;
+        }
+        var origin = _layout["umbrella"] as Array<Number>;
+        dc.drawBitmap(origin[0], origin[1], _umbrella as BitmapResource);
     }
 
     private function getWeatherIcon() as BitmapResource? {

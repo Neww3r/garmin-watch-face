@@ -1,4 +1,5 @@
 import Toybox.Lang;
+import Toybox.System;
 import Toybox.Weather;
 
 // Familles de conditions météo, une icône par famille.
@@ -12,10 +13,14 @@ enum WeatherKind {
     WEATHER_FOG,
 }
 
-// Lecture de la météo affichée par le cadran ; null quand elle n'est pas disponible.
+// Lecture des données affichées par le cadran : batterie et météo (null si indisponible).
 class DataProvider {
 
     function initialize() {
+    }
+
+    function getBattery() as Number {
+        return System.getSystemStats().battery.toNumber();
     }
 
     // Conditions actuelles, synchronisées depuis le téléphone par Garmin Connect.
