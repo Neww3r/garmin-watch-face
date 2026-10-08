@@ -4,11 +4,12 @@
 Usage :
     python3 tools/make_fonts.py
 
-Chaque police est calibrée sur la maquette : hauteur des capitales (ou des chiffres)
-et largeur d'un texte de référence. La largeur s'obtient en ajustant l'espacement
-des lettres, puis, si les lettres se toucheraient, en compressant les glyphes.
-La boîte de chaque police est réduite à la hauteur des capitales, pour que
-TEXT_JUSTIFY_VCENTER centre exactement les capitales sur la coordonnée donnée.
+Chaque police a une hauteur de capitales (ou de chiffres) donnée. Avec une largeur de
+référence, elle est en plus calibrée sur la maquette : l'espacement des lettres est ajusté,
+puis, si les lettres se toucheraient, les glyphes sont compressés. Sans largeur de
+référence, la police garde ses proportions et son espacement naturels.
+La boîte de chaque police fait exactement les capitales plus OVERSHOOT en haut et en bas :
+le cadran centre un texte en plaçant son haut à cy - hauteur / 2 (TotoroView.mc).
 """
 from pathlib import Path
 

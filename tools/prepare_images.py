@@ -31,7 +31,8 @@ AOD_BRIGHTNESS = 110
 EDGE_STRIP = 60
 SS = 4  # rendu à 4x puis réduction, pour un anticrénelage propre
 
-SUNLIT_FUR = (87, 91, 78)  # icône météo : fourrure de Totoro au soleil (flanc gauche, 112/117/100), foncée de 22 %
+# Icônes météo : fourrure de Totoro au soleil (flanc gauche, 112/117/100), foncée de 22 %.
+SUNLIT_FUR = (87, 91, 78)
 WEATHER_ICON = 90
 ALPHA_CUTOFF = 40  # sur 255 : en dessous, le pixel d'une icône devient transparent
 
@@ -115,7 +116,8 @@ def save(img, name, colors=None):
     if colors is None:
         img.save(path, optimize=True)
     else:
-        img.quantize(colors=colors, method=Image.MEDIANCUT, dither=Image.Dither.NONE).save(path, optimize=True)
+        img = img.quantize(colors=colors, method=Image.MEDIANCUT, dither=Image.Dither.NONE)
+        img.save(path, optimize=True)
     print(f"écrit {path.relative_to(ROOT)}")
 
 
@@ -170,8 +172,9 @@ def glyph_icon(code, size=WEATHER_ICON, color=SUNLIT_FUR):
 
 def blend_on(img, under):
     """Pose l'icône (opaque) sur l'image du fond située dessous, pour que ses bords
-    anticrénelés se fondent dans le fond. La transparence du résultat est binaire : les bitmaps Garmin n'ont qu'une transparence tout-ou-rien, et le
-    compilateur tramerait des bords semi-transparents (contours en pointillés)."""
+    anticrénelés se fondent dans le fond. La transparence du résultat est binaire : les
+    bitmaps Garmin n'ont qu'une transparence tout-ou-rien, et le compilateur tramerait des
+    bords semi-transparents (contours en pointillés)."""
     solid = Image.alpha_composite(under, img)
     solid.putalpha(img.getchannel("A").point(lambda a: 255 if a > ALPHA_CUTOFF else 0))
     return solid
@@ -179,10 +182,11 @@ def blend_on(img, under):
 
 # --- Parapluie de Satsuki recoloré selon la batterie (vert à 100 %, rouge d'origine à 0 %) ---
 
-UMBRELLA_SIZE = (113, 68)
-UMBRELLA_BOX = (LAYOUT["umbrella"][0], LAYOUT["umbrella"][1],
-                LAYOUT["umbrella"][0] + UMBRELLA_SIZE[0], LAYOUT["umbrella"][1] + UMBRELLA_SIZE[1])
 UMBRELLA_ZONES = [(68, 200, 181, 243), (112, 243, 126, 267)]  # toile, puis manche jusqu'à la main
+UMBRELLA_BOX = (68, 200, 181, 268)  # rectangle des images, qui englobe les zones
+assert all(UMBRELLA_BOX[0] <= z[0] and UMBRELLA_BOX[1] <= z[1] and z[2] <= UMBRELLA_BOX[2]
+           and z[3] <= UMBRELLA_BOX[3] for z in UMBRELLA_ZONES)
+assert LAYOUT["umbrella"] == list(UMBRELLA_BOX[:2]), "layout.json : umbrella ≠ coin de UMBRELLA_BOX"
 UMBRELLA_HUE = 1  # teinte d'origine du parapluie, en degrés
 UMBRELLA_FULL_HUE = 115  # teinte à 100 % de batterie (vert)
 UMBRELLA_STEPS = range(0, 101, 10)
@@ -230,9 +234,8 @@ def luma(r, g, b):
 
 
 def icons():
-    """À lancer après « scene » : les icônes sont mélangées avec la couleur du fond sous elles."""
-    # L'icône a une position fixe : ses bords anticrénelés sont mélangés avec les vrais
-    # pixels du fond sous elle.
+    """À lancer après « scene » : l'icône a une position fixe, ses bords anticrénelés sont
+    mélangés avec les vrais pixels du fond sous elle."""
     cx, cy = LAYOUT["weather"]
     left, top = cx - WEATHER_ICON // 2, cy - WEATHER_ICON // 2
     under = Image.open(DRAWABLES / "bg_scene.png").convert("RGBA").crop(

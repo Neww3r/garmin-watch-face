@@ -101,14 +101,10 @@ class TotoroView extends WatchUi.WatchFace {
 
         var time = _layout["time"] as Array<Number>;
         dc.setColor(CREAM, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(time[0], time[1], _timeFont, getTimeString(), Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+        drawCenteredText(dc, time[0], time[1], _timeFont, getTimeString());
 
-        // Date centrée dans sa zone. Haut du texte calculé ici plutôt qu'avec
-        // TEXT_JUSTIFY_VCENTER, qui décalait le texte d'un pixel vers le bas : la boîte des
-        // polices fait exactement les capitales plus une marge égale (tools/make_fonts.py).
         var date = _layout["dateArea"] as Array<Number>;
-        dc.drawText(date[0] + date[2] / 2, date[1] + date[3] / 2 - dc.getFontHeight(_dateFont) / 2,
-            _dateFont, getDateString(), Graphics.TEXT_JUSTIFY_CENTER);
+        drawCenteredText(dc, date[0] + date[2] / 2, date[1] + date[3] / 2, _dateFont, getDateString());
 
         // Météo au milieu du ventre de Totoro.
         var weatherIcon = getWeatherIcon();
@@ -168,8 +164,15 @@ class TotoroView extends WatchUi.WatchFace {
         var dy = ((min / 5) % 5 - 2) * 3;
         var time = _layout["time"] as Array<Number>;
         dc.setColor(AOD_TIME_COLOR, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(time[0] + dx, time[1] + dy, _timeFont, getTimeString(),
-            Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+        drawCenteredText(dc, time[0] + dx, time[1] + dy, _timeFont, getTimeString());
+    }
+
+    // Centre le texte sur (cx, cy). Haut du texte calculé ici plutôt qu'avec
+    // TEXT_JUSTIFY_VCENTER, qui décalait le texte d'un pixel vers le bas : la boîte des
+    // polices fait exactement les capitales plus une marge égale (tools/make_fonts.py).
+    private function drawCenteredText(dc as Dc, cx as Number, cy as Number, font as FontResource,
+            text as String) as Void {
+        dc.drawText(cx, cy - dc.getFontHeight(font) / 2, font, text, Graphics.TEXT_JUSTIFY_CENTER);
     }
 
     private function getTimeString() as String {
