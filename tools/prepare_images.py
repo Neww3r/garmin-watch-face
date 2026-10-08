@@ -29,7 +29,7 @@ AOD_BRIGHTNESS = 110
 EDGE_STRIP = 60
 SS = 4  # rendu à 4x puis réduction, pour un anticrénelage propre
 
-CHARCOAL = (58, 64, 60)  # icône météo sur le ventre beige, couleur de la fourrure de Totoro
+SUNLIT_FUR = (87, 91, 78)  # icône météo : fourrure de Totoro au soleil (flanc gauche, 112/117/100), foncée de 22 %
 WEATHER_ICON = 90
 ALPHA_CUTOFF = 40  # sur 255 : en dessous, le pixel d'une icône devient transparent
 
@@ -156,7 +156,7 @@ def material_font(size):
     return font
 
 
-def glyph_icon(code, size=WEATHER_ICON, color=CHARCOAL):
+def glyph_icon(code, size=WEATHER_ICON, color=SUNLIT_FUR):
     """Rend un glyphe Material centré, à SS fois la taille puis réduit."""
     big = Image.new("RGBA", (size * SS, size * SS), (0, 0, 0, 0))
     ImageDraw.Draw(big).text((size * SS // 2, size * SS // 2), chr(code), font=material_font(size * SS),
