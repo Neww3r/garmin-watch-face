@@ -1,0 +1,15 @@
+info face="SF Compact Rounded Medium" size=66 bold=0 italic=0 charset="" unicode=1 stretchH=100 smooth=1 aa=1 padding=0,0,0,0 spacing=1,1
+common lineHeight=66 base=65 scaleW=474 scaleH=68 pages=1 packed=0 alphaChnl=1 redChnl=0 greenChnl=0 blueChnl=0
+page id=0 file="time.png"
+chars count=11
+char id=48 x=1 y=1 width=47 height=66 xoffset=3 yoffset=0 xadvance=54 page=0 chnl=15
+char id=49 x=50 y=1 width=26 height=66 xoffset=4 yoffset=0 xadvance=38 page=0 chnl=15
+char id=50 x=78 y=1 width=43 height=66 xoffset=5 yoffset=0 xadvance=52 page=0 chnl=15
+char id=51 x=123 y=1 width=45 height=66 xoffset=4 yoffset=0 xadvance=53 page=0 chnl=15
+char id=52 x=170 y=1 width=50 height=66 xoffset=3 yoffset=0 xadvance=54 page=0 chnl=15
+char id=53 x=222 y=1 width=44 height=66 xoffset=6 yoffset=0 xadvance=55 page=0 chnl=15
+char id=54 x=268 y=1 width=46 height=66 xoffset=4 yoffset=0 xadvance=53 page=0 chnl=15
+char id=55 x=316 y=1 width=43 height=66 xoffset=3 yoffset=0 xadvance=50 page=0 chnl=15
+char id=56 x=361 y=1 width=47 height=66 xoffset=4 yoffset=0 xadvance=55 page=0 chnl=15
+char id=57 x=410 y=1 width=46 height=66 xoffset=4 yoffset=0 xadvance=53 page=0 chnl=15
+char id=58 x=458 y=1 width=13 height=66 xoffset=6 yoffset=0 xadvance=25 page=0 chnl=15

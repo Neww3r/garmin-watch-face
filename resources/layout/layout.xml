@@ -1,0 +1,7 @@
+<resources>
+    <!-- Positions partagées avec tools/prepare_images.py.
+         time : centre [x, y] de l'heure.
+         dateArea : zone [x, y, largeur, hauteur, rayon] où la date est centrée (sous l'heure).
+         weather : centre [x, y] de l'icône météo, au milieu du ventre de Totoro. -->
+    <jsonData id="Layout" filename="layout.json"/>
+</resources>

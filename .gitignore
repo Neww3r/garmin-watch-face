@@ -1,0 +1,8 @@
+bin/
+*.prg
+*.iq
+*.der
+*.pem
+.DS_Store
+developer_key
+__pycache__/

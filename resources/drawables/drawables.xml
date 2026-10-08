@@ -1,0 +1,14 @@
+<drawables>
+    <bitmap id="LauncherIcon" filename="launcher_icon.png"/>
+    <bitmap id="BgScene" filename="bg_scene.png"/>
+    <bitmap id="BgAod" filename="bg_aod.png"/>
+    <bitmap id="WeatherClear" filename="icons/weather_clear.png" dithering="none"/>
+    <bitmap id="WeatherPartly" filename="icons/weather_partly.png" dithering="none"/>
+    <bitmap id="WeatherCloudy" filename="icons/weather_cloudy.png" dithering="none"/>
+    <bitmap id="WeatherRain" filename="icons/weather_rain.png" dithering="none"/>
+    <bitmap id="WeatherSnow" filename="icons/weather_snow.png" dithering="none"/>
+    <bitmap id="WeatherStorm" filename="icons/weather_storm.png" dithering="none"/>
+    <bitmap id="WeatherFog" filename="icons/weather_fog.png" dithering="none"/>
+    <bitmap id="WeatherNight" filename="icons/weather_night.png" dithering="none"/>
+    <bitmap id="WeatherPartlyNight" filename="icons/weather_partly_night.png" dithering="none"/>
+</drawables>
